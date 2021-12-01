@@ -6,15 +6,15 @@ interface ProductContext {
   getProducts(): Promise<void>;
 }
 
-const ProductContext = createContext<ProductContext | null>(
-  null
-) as Context<ProductContext>;
+const ProductContext = createContext<ProductContext | null>(null) as Context<
+  ProductContext
+>;
 
 const ProductProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   async function getProducts() {
-    const producs = await axiosService.get<Product[]>("/api/products");
+    const producs = await axiosService.get<Product[]>("/api/product");
     setProducts(producs.data);
   }
 

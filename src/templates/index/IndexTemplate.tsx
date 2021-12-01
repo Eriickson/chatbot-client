@@ -11,17 +11,33 @@ import {
 import React from "react";
 import numeral from "numeral";
 import { useProduct } from "../../context";
-import { Footer } from "../../components";
+import { Footer, Header } from "../../components";
 
 export const IndexTemplate = () => {
   const { products } = useProduct();
 
   return (
-    <Box minHeight={"100vh"} pt="10" bgColor="#f8f8f8">
+    <Box minHeight={"100vh"} bgColor="#f8f8f8">
+      <Header />
       <Container maxW="container.xl" mb={6}>
         <Text fontWeight={"semibold"} mb="2" fontSize={"2xl"}>
           {products.length} Products
         </Text>
+        <Button
+          zIndex={1000}
+          right={0}
+          bottom={0}
+          pos={"fixed"}
+          _focus={{ shadow: "none" }}
+          rounded="sm"
+          p={2}
+          w={12}
+          h={12}
+          m={10}
+        >
+          <Image src="https://cdn-icons-png.flaticon.com/512/2728/2728279.png" />
+        </Button>
+        {/* <Chatbox /> */}
         <Box>
           <SimpleGrid columns={12} spacing={4}>
             {products?.map((product) => (
