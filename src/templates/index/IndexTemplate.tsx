@@ -12,6 +12,7 @@ import React from "react";
 import numeral from "numeral";
 import { useProduct } from "../../context";
 import { Footer, Header } from "../../components";
+import { ChatbotComponent } from "./ChatbotComponent";
 
 export const IndexTemplate = () => {
   const { products } = useProduct();
@@ -23,20 +24,7 @@ export const IndexTemplate = () => {
         <Text fontWeight={"semibold"} mb="2" fontSize={"2xl"}>
           {products.length} Products
         </Text>
-        <Button
-          zIndex={1000}
-          right={0}
-          bottom={0}
-          pos={"fixed"}
-          _focus={{ shadow: "none" }}
-          rounded="sm"
-          p={2}
-          w={12}
-          h={12}
-          m={10}
-        >
-          <Image src="https://cdn-icons-png.flaticon.com/512/2728/2728279.png" />
-        </Button>
+        <ChatbotComponent />
         {/* <Chatbox /> */}
         <Box>
           <SimpleGrid columns={12} spacing={4}>
