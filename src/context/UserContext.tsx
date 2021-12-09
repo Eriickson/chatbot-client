@@ -7,6 +7,7 @@ interface UserContext {
   user: User;
   registerUser(newUser: User): Promise<void>;
   authenticateUser(payload: AuthenticateUserPayload): Promise<void>;
+  logout(): void;
 }
 
 const UserContext = createContext<UserContext | null>(null) as Context<
@@ -34,6 +35,8 @@ const UserProvider: React.FC = ({ children }) => {
         payload
       );
 
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       setUser(data.user);
       setIsAuth(true);
 
@@ -43,9 +46,27 @@ const UserProvider: React.FC = ({ children }) => {
     }
   }
 
+  function logout() {
+    localStorage.removeItem("user");
+    setIsAuth(false);
+    setUser({} as User);
+    location.reload();
+  }
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+    if (Object.keys(user).length) {
+      setIsAuth(true);
+      setUser(user);
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
+
   return (
     <UserContext.Provider
-      value={{ registerUser, authenticateUser, user, isAuth }}
+      value={{ registerUser, authenticateUser, logout, user, isAuth }}
     >
       {children}
     </UserContext.Provider>

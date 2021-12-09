@@ -2,20 +2,21 @@ import React from "react";
 
 import Router from "next/router";
 
-import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Link, Text } from "@chakra-ui/react";
 import { useUser } from "../context";
-import { ShoppingCart } from ".";
 
 export const Header = () => {
-  const { isAuth, user } = useUser();
+  const { isAuth, user, logout } = useUser();
 
   return (
     <Box bgColor={"blue.500"} py={3} mb="5">
       <Container maxW="container.xl">
         <Flex alignItems={"center"} justifyContent={"space-between"}>
-          <Text color="white" fontSize={"xl"} fontWeight={"semibold"}>
-            Shopping Online
-          </Text>
+          <Link href="/">
+            <Text color="white" fontSize={"xl"} fontWeight={"semibold"}>
+              Shopping Online
+            </Text>
+          </Link>
           {isAuth ? (
             <Box>
               <Box color={"white"}>
@@ -25,7 +26,17 @@ export const Header = () => {
                 <Text textAlign={"right"} fontSize={"sm"}>
                   {user.email}
                 </Text>
+                <Text
+                  _hover={{ textDecor: "underline" }}
+                  cursor="pointer"
+                  textAlign={"right"}
+                  fontSize={"sm"}
+                  onClick={logout}
+                >
+                  Cerrar Sesión
+                </Text>
               </Box>
+
               {/* <ShoppingCart /> */}
             </Box>
           ) : (

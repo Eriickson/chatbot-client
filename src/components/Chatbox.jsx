@@ -7,7 +7,7 @@ const ChatboxComponent = () => {
         steps={[
           {
             id: "hello-world",
-            message: "Hello World!",
+            message: "Hola, soy tu asistente virtual",
             end: true,
           },
         ]}
