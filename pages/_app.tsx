@@ -1,13 +1,15 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { AppProps } from "next/app";
-import { ProductProvider, UserProvider } from "../src/context";
+import { OrderProvider, ProductProvider, UserProvider } from "../src/context";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <UserProvider>
         <ProductProvider>
-          <Component {...pageProps} />
+          <OrderProvider>
+            <Component {...pageProps} />
+          </OrderProvider>
         </ProductProvider>
       </UserProvider>
     </ChakraProvider>
